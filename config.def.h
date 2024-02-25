@@ -53,7 +53,7 @@ static const Layout layouts[] = {
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
@@ -102,8 +102,6 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	// { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -123,8 +121,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },  // this simply kills dwm
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },  // 1 is the "restart" option
 
     // the "kill -44" is to send signal 10 (for some reason you must +34 it) to
     // "the pid of dwmblocks". I.e. audio change updates dwmblocks w/ sig 10
@@ -132,10 +130,13 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioMute,        spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
 
-    { 0, XF86XK_AudioPrev,		spawn,		SHCMD("playerctl previous") },
-	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("playerctl next") },
-	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("playerctl pause") },
-	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("playerctl play") },
+    { 0, XF86XK_AudioPrev,	    	spawn,		SHCMD("playerctl previous") },
+	{ 0, XF86XK_AudioNext,	    	spawn,		SHCMD("playerctl next") },
+	{ 0, XF86XK_AudioPause,	    	spawn,		SHCMD("playerctl pause") },
+	{ 0, XF86XK_AudioPlay,	     	spawn,		SHCMD("playerctl play") },
+
+    { 0, XF86XK_MonBrightnessUp,    spawn,      SHCMD("bright Up") },
+    { 0, XF86XK_MonBrightnessDown,  spawn,      SHCMD("bright Down") },
 
 };
 
