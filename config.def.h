@@ -78,6 +78,9 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 
 // Ben's custom commands
 static const char *launchWebBrowserCmd[] = {"firefox", NULL};
+static const char *launchZathuraCmd[] = {"zathura", NULL};
+static const char *launchDiscordCmd[] = {"discord", NULL};
+static const char *launchSpotifyCmd[] = {"spotify", NULL};
 
 // For audio commands, included right before needed as per DWM tradition
 #include <X11/XF86keysym.h>
@@ -86,7 +89,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	// { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_w,      spawn,          {.v = launchWebBrowserCmd} },  // custom
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -126,6 +128,12 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },  // this simply kills dwm
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },  // 1 is the "restart" option
 
+    /* CUSTOMS */
+    { MODKEY,                       XK_w,      spawn,          {.v = launchWebBrowserCmd} },
+    { MODKEY,                       XK_z,      spawn,          {.v = launchZathuraCmd} }, 
+    { MODKEY,                       XK_d,      spawn,          {.v = launchDiscordCmd} },
+    { MODKEY,                       XK_s,      spawn,          {.v = launchSpotifyCmd} },
+
     // the "kill -44" is to send signal 10 (for some reason you must +34 it) to
     // "the pid of dwmblocks". I.e. audio change updates dwmblocks w/ sig 10
     { 0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; kill -44 $(pidof dwmblocks)") },
@@ -137,8 +145,7 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPause,	    	spawn,		SHCMD("playerctl play-pause") },
 	{ 0, XF86XK_AudioPlay,	     	spawn,		SHCMD("playerctl play-pause") },
 
-    // broken for some reason? confirmed working a while ago but suddenly
-    // stopped...
+    // NOTE: 'bright' script must be in path at this point
     { 0, XF86XK_MonBrightnessUp,    spawn,      SHCMD("bright +") },
     { 0, XF86XK_MonBrightnessDown,  spawn,      SHCMD("bright -") },
 
