@@ -131,7 +131,7 @@ static const Key keys[] = {
     /* CUSTOMS */
     { MODKEY,                       XK_w,      spawn,          {.v = launchWebBrowserCmd} },
     { MODKEY,                       XK_z,      spawn,          {.v = launchZathuraCmd} }, 
-    { MODKEY,                       XK_d,      spawn,          {.v = launchDiscordCmd} },
+    { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = launchDiscordCmd} },
     { MODKEY,                       XK_s,      spawn,          {.v = launchSpotifyCmd} },
 
     // the "kill -44" is to send signal 10 (for some reason you must +34 it) to
